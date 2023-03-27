@@ -4,7 +4,15 @@ RSpec.describe 'tasks', type: :integration  do
 
   it "returns a list of all tasks with status and body" do
     query = <<~GQL
-        F
+        mutation{
+        createTask(
+        body: "tested task"
+                  )
+        {
+          body
+          state
+	      }
+      }
     GQL
     expected_result = Task.last
 
