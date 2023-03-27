@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'tasks', type: :integration  do
+RSpec.describe 'create_task', type: :integration  do
 
-  it "returns a list of all tasks with status and body" do
+  it "creates a new task " do
     query = <<~GQL
         mutation{
         createTask(
