@@ -42,6 +42,8 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'rspec-rails', '~> 6.0.0'
   gem 'pry', '~> 0.13.1'
+  gem 'database_cleaner-active_record'
+
 end
 
 group :development do
