@@ -65,3 +65,18 @@ def edit_task(id,body)
   post graphql_path, params: { query: query, variables: variables }
   JSON.parse(response.body)
 end
+
+def list_active_tasks
+  query = <<~GQL
+        {
+        activeTasks{
+          body
+          state
+        }
+        }
+  GQL
+
+  post graphql_path, params: { query: query }
+
+  JSON.parse(response.body)
+end
