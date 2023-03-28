@@ -80,3 +80,15 @@ def list_active_tasks
 
   JSON.parse(response.body)
 end
+
+def active_tasks_counter
+  query = <<~GQL
+        {
+        activeTasksCounter
+        }
+  GQL
+
+  post graphql_path, params: { query: query }
+
+  JSON.parse(response.body)
+end
