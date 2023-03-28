@@ -1,24 +1,18 @@
 require 'rails_helper'
+require 'tasks_api'
 
-RSpec.describe 'tasks', type: :integration  do
+RSpec.describe 'create_task', type: :integration  do
 
-  it "returns a list of all tasks with status and body" do
-    query = <<~GQL
-        mutation{
-        createTask(
-        body: "tested task"
-                  )
-        {
-          body
-          state
-	      }
-      }
-    GQL
-    expected_result = Task.last
+  it "creates a new task " do
+    tasks = list_tasks
 
-    post graphql_path, params: { query: query }
+    expect(tasks['data']).to eq "tasks" => []
 
-    parsed_result = JSON.parse(response.body)
-    expect(parsed_result).equal?(expected_result)
+    create_task("Buy Milk")
+    create_task("Make food")
+    tasks = list_tasks
+
+    expect(tasks['data']).to eq "tasks"=>[{ 'body' => 'Buy Milk', 'state' => 'active'}, {'body' => 'Make food', 'state' => 'active'}]
+
   end
 end
