@@ -110,8 +110,24 @@ end
 
 def undo_check_task(id)
   query = <<~GQL
-      mutation CheckTask($id : ID!){
+      mutation UndoCheckTask($id : ID!){
       undoCheckTask(id: $id)
+      {
+        id
+        body
+        state
+    	      }
+    }
+  GQL
+  variables = { id: id }
+  post graphql_path, params: { query: query, variables: variables }
+  JSON.parse(response.body)
+end
+
+def delete_task(id)
+  query = <<~GQL
+      mutation DeleteTask($id : ID!){
+      deleteTask(id: $id)
       {
         id
         body
