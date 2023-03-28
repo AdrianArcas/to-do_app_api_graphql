@@ -49,3 +49,19 @@ def check_task(id)
   post graphql_path, params: { query: query, variables: variables }
   JSON.parse(response.body)
 end
+
+def edit_task(id,body)
+  query = <<~GQL
+        mutation EditTask($id : ID!,$body : String!){
+        editTask(id: $id,body: $body)
+        {
+          id
+          body
+          state
+	      }
+      }
+  GQL
+  variables ={id: id,body:body}
+  post graphql_path, params: { query: query, variables: variables }
+  JSON.parse(response.body)
+end
