@@ -8,10 +8,14 @@ module Resolvers
     argument :body,String, required: true
 
     def resolve(id:, body:)
+      if body.empty?
+        GraphQL::ExecutionError.new("Body can`t be an empty string")
+      else
       task = Task.find(id)
       task.body = body
       task.save
       task
+      end
     end
   end
 end
