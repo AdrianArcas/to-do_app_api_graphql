@@ -6,5 +6,6 @@ module Types
     field :undo_check_task, resolver: Resolvers::UndoCheckTask
     field :edit_task,resolver: Resolvers::EditTask
     field :delete_completed_tasks,resolver: Resolvers::DeleteCompletedTasks
+    field :delete_task, resolver: Resolvers::DeleteTask
   end
 end
