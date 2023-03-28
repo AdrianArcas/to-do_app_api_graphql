@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'tasks_api'
 
-RSpec.describe 'tasks', type: :integration do
+RSpec.describe 'active_tasks', type: :integration do
 
   it "returns a list of all unchecked tasks" do
 
