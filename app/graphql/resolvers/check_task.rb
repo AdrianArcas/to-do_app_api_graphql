@@ -4,13 +4,12 @@ module Resolvers
 
     type Types::TaskType, null: false
 
-    argument :id,ID,required: true
+    argument :id, ID, required: true
 
     def resolve(id:)
       task = Task.find(id)
-      if task.state = "active"
-        task.state = "completed"
-      end
+      task.state = "completed"
+      task.save
       task
     end
   end
