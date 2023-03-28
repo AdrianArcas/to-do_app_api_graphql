@@ -106,3 +106,20 @@ def delete_completed_tasks
 
   JSON.parse(response.body)
 end
+
+
+def undo_check_task(id)
+  query = <<~GQL
+      mutation CheckTask($id : ID!){
+      undoCheckTask(id: $id)
+      {
+        id
+        body
+        state
+    	      }
+    }
+  GQL
+  variables = { id: id }
+  post graphql_path, params: { query: query, variables: variables }
+  JSON.parse(response.body)
+end
